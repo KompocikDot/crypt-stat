@@ -1,10 +1,11 @@
-from httpx import AsyncClient
 import asyncio
+
+from httpx import AsyncClient
 
 
 class Worker:
     CURRENCIES_CODES = ["USD", "EUR", "EUR", "PLN", "JPY", "GBP"]
-    CRYPTO_CODES = crypto_list = [
+    CRYPTO_CODES = [
         "BTC",  # Bitcoin
         "ETH",  # Ethereum
         "BNB",  # Binance Coin
@@ -14,10 +15,10 @@ class Worker:
         "SOL",  # Solana
         "DOT",  # Polkadot
         "LTC",  # Litecoin
-        "LINK"  # Chainlink
+        "LINK",  # Chainlink
     ]
 
-    API_URL = ""
+    API_URL = "https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest"
 
     def __init__(self, api_key: str, worker_delay: int) -> None:
         self.__api_key = api_key
@@ -26,13 +27,26 @@ class Worker:
     async def run(self) -> None:
         async with AsyncClient() as client:
             while True:
-                data = self._scrape_data(client)
-                exists_in_db = self.check_in_db(data)
+                data = await self.__scrape_data(client)
+                exists_in_db = await self.__check_in_db(data)
                 if not exists_in_db:
-                    self.insert_to_db(data)
+                    await self.__insert_to_db(data)
 
                 await asyncio.sleep(self._worker_delay)
 
-    async def _scrape_data(self, client: AsyncClient) -> dict:
-        while True:
-            resp = await client.get(self.API_URL)
+    async def __scrape_data(self, client: AsyncClient) -> dict:
+        headers = {
+            "Accept": "application/json",
+            "Accept-Encoding": "deflate, gzip",
+            "Content-Type": "application/json",
+            "X-CMC_PRO_API_KEY": self.__api_key,
+        }
+
+        resp = await client.get(self.API_URL, headers=headers)
+        return resp.json()
+
+    async def __check_in_db(self, data):
+        ...
+
+    async def __insert_to_db(self, data):
+        ...

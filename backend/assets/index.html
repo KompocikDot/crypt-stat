@@ -4,10 +4,42 @@
     <meta charset="UTF-8">
     <title>CRYPT-STAT</title>
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
 </head>
 <body>
     <h1>CRYPT-STAT</h1>
 
-    <form></form>
+    <form hx-post="/" hx-ext="json-enc">
+        <label for="cryptocurrencies">
+            Cryptocurrencies
+        </label>
+        <select id="cryptocurrencies" name="cryptocurrencies" multiple>
+                <option>BTC</option>
+                <option>ETH</option>
+                <option>LTC</option>
+                <option>DOGE</option>
+        </select>
+
+        <label for="currencies">
+            Currencies
+        </label>
+        <select id="currencies" name="output_currencies" multiple>
+                <option>USD</option>
+                <option>GBP</option>
+                <option>EUR</option>
+                <option>PLN</option>
+        </select>
+
+        <input type="date" name="date_from"/>
+        <input type="date" name="date_until"/>
+
+        <select id="data_type" name="data_type">
+                <option>MARKET CAP</option>
+                <option>VOLUME</option>
+                <option>PERCENT CHANGE</option>
+                <option>PRICE</option>
+        </select>
+        <button type="submit">Check data</button>
+    </form>
 </body>
 </html>

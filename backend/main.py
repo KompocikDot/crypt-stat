@@ -1,21 +1,26 @@
+import asyncio
 import os
-
-from dotenv import load_dotenv
-
-from worker import Worker
-
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
-from fastapi.responses import FileResponse
 import uvicorn
+from dotenv import load_dotenv
+from exceptions import MissingApiKeyException
+from fastapi import FastAPI
+from fastapi.responses import FileResponse, HTMLResponse
+from input import FormInput
+from worker import Worker
 
-load_dotenv("../.env")
+load_dotenv(".env")
+
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    api_worker = Worker(api_key=os.getenv("COINMARKETCAP_API_KEY"), worker_delay=60)
-    await api_worker.run()
+    api_key = os.getenv("COINMARKETCAP_API_KEY")
+    if not api_key:
+        raise MissingApiKeyException
+
+    api_worker = Worker(api_key=api_key, worker_delay=360)
+    asyncio.create_task(api_worker.run())
     yield
 
 
@@ -28,11 +33,11 @@ async def read_index():
 
 
 @app.post("/")
-async def get_plot():
-    ...
+async def get_plot(payload: FormInput):
+    return HTMLResponse(f"<div> {payload.cryptocurrencies} </div>")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     uvicorn.run(app)
 
 
@@ -41,3 +46,4 @@ if __name__ == '__main__':
 # TODO: Obróbka danych na podstawie requesta
 # TODO: Zwrot danych (obrobionych) w formie html z wykresem(svg)
 # TODO: Powtórz
+# TODO: Dodaj docsy + testy
