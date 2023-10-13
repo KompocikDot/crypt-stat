@@ -9,7 +9,7 @@
 <body>
     <h1>CRYPT-STAT</h1>
 
-    <form hx-post="/" hx-ext="json-enc">
+    <form hx-post="/" hx-ext="json-enc" hx-swap="outerHTML" hx-target="#plot">
         <label for="cryptocurrencies">
             Cryptocurrencies
         </label>
@@ -41,5 +41,8 @@
         </select>
         <button type="submit">Check data</button>
     </form>
+
+    <div id="plot"></div>
+
 </body>
 </html>
