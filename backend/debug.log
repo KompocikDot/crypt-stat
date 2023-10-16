@@ -1,0 +1,70 @@
+2023-10-17 00:27:17,397 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:27:17,490 [INFO] Scraped data with status: 200
+2023-10-17 00:27:17,776 [INFO] 110 new objects found
+2023-10-17 00:27:17,855 [INFO] 110 successfully inserted
+2023-10-17 00:34:26,330 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:34:26,331 [INFO] Scraped data with status: 200
+2023-10-17 00:34:26,530 [INFO] Successfully inserted 110 new items
+2023-10-17 00:34:46,620 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:34:46,621 [INFO] Scraped data with status: 200
+2023-10-17 00:35:06,878 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:35:06,886 [INFO] Scraped data with status: 200
+2023-10-17 00:35:27,470 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:35:27,471 [INFO] Scraped data with status: 200
+2023-10-17 00:35:27,660 [INFO] Successfully inserted 110 new items
+2023-10-17 00:35:47,753 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:35:47,753 [INFO] Scraped data with status: 200
+2023-10-17 00:35:59,343 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:35:59,344 [INFO] Scraped data with status: 200
+2023-10-17 00:35:59,511 [INFO] No new items
+2023-10-17 00:36:19,619 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:36:19,622 [INFO] Scraped data with status: 200
+2023-10-17 00:36:20,064 [INFO] No new items
+2023-10-17 00:36:40,546 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:36:40,548 [INFO] Scraped data with status: 200
+2023-10-17 00:36:40,961 [INFO] Successfully inserted 110 new items
+2023-10-17 00:37:01,052 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:37:01,053 [INFO] Scraped data with status: 200
+2023-10-17 00:37:01,247 [INFO] No new items
+2023-10-17 00:37:21,341 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:37:21,345 [INFO] Scraped data with status: 200
+2023-10-17 00:37:21,668 [INFO] No new items
+2023-10-17 00:37:41,929 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:37:41,931 [INFO] Scraped data with status: 200
+2023-10-17 00:37:42,322 [INFO] Successfully inserted 110 new items
+2023-10-17 00:38:02,427 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:38:02,432 [INFO] Scraped data with status: 200
+2023-10-17 00:38:02,851 [INFO] No new items
+2023-10-17 00:38:22,950 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:38:22,952 [INFO] Scraped data with status: 200
+2023-10-17 00:38:23,382 [INFO] No new items
+2023-10-17 00:38:43,890 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:38:43,893 [INFO] Scraped data with status: 200
+2023-10-17 00:38:44,437 [INFO] Successfully inserted 109 new items
+2023-10-17 00:39:04,527 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:39:04,531 [INFO] Scraped data with status: 200
+2023-10-17 00:39:04,837 [INFO] No new items
+2023-10-17 00:39:24,937 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:39:24,939 [INFO] Scraped data with status: 200
+2023-10-17 00:39:25,350 [INFO] No new items
+2023-10-17 00:39:45,802 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:39:45,804 [INFO] Scraped data with status: 200
+2023-10-17 00:39:46,126 [INFO] Successfully inserted 110 new items
+2023-10-17 00:40:06,224 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:40:06,227 [INFO] Scraped data with status: 200
+2023-10-17 00:40:06,529 [INFO] No new items
+2023-10-17 00:40:26,630 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:40:26,634 [INFO] Scraped data with status: 200
+2023-10-17 00:40:27,070 [INFO] No new items
+2023-10-17 00:40:47,334 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:40:47,337 [INFO] Scraped data with status: 200
+2023-10-17 00:40:47,870 [INFO] Successfully inserted 110 new items
+2023-10-17 00:41:07,972 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:41:07,975 [INFO] Scraped data with status: 200
+2023-10-17 00:41:08,435 [INFO] No new items
+2023-10-17 00:41:28,656 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:41:28,657 [INFO] Scraped data with status: 200
+2023-10-17 00:41:28,869 [INFO] No new items
+2023-10-17 00:42:44,841 [INFO] HTTP Request: GET https://web-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest?symbol=BTC%2CETH%2CUSDT%2CBNB%2CXRP%2CUSDC%2CSOL%2CADA%2CDOGE%2CTRX&convert=USD%2CAUD%2CCAD%2CCHF%2CCNY%2CEUR%2CGBP%2CJPY%2CPLN%2CRUB%2CAED "HTTP/1.1 200 OK"
+2023-10-17 00:42:44,844 [INFO] Scraped data with status: 200
+2023-10-17 00:42:45,299 [INFO] Successfully inserted 110 new items

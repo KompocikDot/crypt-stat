@@ -5,34 +5,56 @@
     <title>CRYPT-STAT</title>
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
 </head>
 <body>
-    <h1>CRYPT-STAT</h1>
+    <div class="md:flex md:items-center md:justify-between">
+      <div class="min-w-0 flex-1">
+        <h2 class="text-2xl font-bold leading-7 bg-black text-white sm:truncate sm:text-3xl sm:tracking-tight">CRYPT STAT</h2>
+      </div>
+    </div>
 
     <form hx-post="/" hx-ext="json-enc" hx-swap="outerHTML" hx-target="#plot">
         <label for="cryptocurrencies">
             Cryptocurrencies
         </label>
         <select id="cryptocurrencies" name="cryptocurrencies" multiple>
-                <option>BTC</option>
-                <option>ETH</option>
-                <option>LTC</option>
-                <option>DOGE</option>
+            <option value="BTC">BTC</option>
+            <option value="ETH">ETH</option>
+            <option value="USDT">USDT</option>
+            <option value="BNB">BNB</option>
+            <option value="XRP">XRP</option>
+            <option value="USDC">USDC</option>
+            <option value="SOL">SOL</option>
+            <option value="ADA">ADA</option>
+            <option value="DOGE">DOGE</option>
+            <option value="TRX">TRX</option>
         </select>
 
         <label for="currencies">
             Currencies
         </label>
         <select id="currencies" name="output_currencies" multiple>
-                <option>USD</option>
-                <option>GBP</option>
-                <option>EUR</option>
-                <option>PLN</option>
+            <option value="USD">United States Dollar</option>
+            <option value="AUD">Australian Dollar</option>
+            <option value="CAD">Canadian Dollar</option>
+            <option value="CHF">Swiss Franc</option>
+            <option value="CNY">Chinese Yuan</option>
+            <option value="EUR">Euro</option>
+            <option value="GBP">Pound Sterling</option>
+            <option value="JPY">Japanese Yen</option>
+            <option value="PLN">Polish Złoty</option>
+            <option value="RUB">Russian Ruble</option>
+            <option value="AED">United Arab Emirates Dirham</option>
         </select>
 
-        <input type="date" name="date_from"/>
-        <input type="date" name="date_until"/>
+        <label for="date_from">Date from</label>
+        <input id="date_from" type="date" name="date_from"/>
+        <label for="date_until">Date until</label>
+        <input id="date_until" type="date" name="date_until"/>
 
+        <label for="data_type">Type of data in chart</label>
         <select id="data_type" name="data_type">
                 <option>MARKET CAP</option>
                 <option>VOLUME</option>

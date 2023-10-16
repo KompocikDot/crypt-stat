@@ -16,7 +16,7 @@ load_dotenv()
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    api_worker = Worker(worker_delay=360)
+    api_worker = Worker(worker_delay=20)
     asyncio.create_task(api_worker.run())
     yield
 
