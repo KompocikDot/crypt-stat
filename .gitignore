@@ -4,3 +4,4 @@ venv/
 **/.env
 .mypy_cache/
 .DS_Store
+backend/debug.log

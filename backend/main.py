@@ -1,27 +1,30 @@
-import asyncio
-from contextlib import asynccontextmanager
+import os
 
 import uvicorn
-from asyncpg import Pool
+from asyncpg import create_pool
 from crypto import CryptoResult
 from dotenv import load_dotenv
-from fastapi import Depends, FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi_utils.tasks import repeat_every
 from input import FormInput
-from utils import get_db_pool
 from worker import Worker
 
 load_dotenv()
 
 
-@asynccontextmanager
-async def lifespan(_: FastAPI):
-    api_worker = Worker(worker_delay=20)
-    asyncio.create_task(api_worker.run())
-    yield
+app = FastAPI(title="CRYPT-STAT")
 
 
-app = FastAPI(title="CRYPT-STAT", lifespan=lifespan)
+@app.on_event("startup")
+@repeat_every(seconds=20)
+async def run_background_worker() -> None:
+    if not hasattr(app.state, "db"):
+        app.state.db = await create_pool(os.getenv("DB_URL"))
+
+    worker = Worker(db_pool=app.state.db)
+    await worker.run()
 
 
 @app.get("/")
@@ -29,21 +32,19 @@ async def read_index():
     return FileResponse("./assets/index.html")
 
 
-@app.post("/")
-async def get_plot(payload: FormInput, db_pool: Pool = Depends(get_db_pool)):
-    res = CryptoResult(payload=payload, db_pool=db_pool)
+@app.post("/get-plot/")
+async def get_plot(payload: FormInput, request: Request):
+    if payload.date_until < payload.date_from:
+        return HTMLResponse(
+            "<div>date until cannot be earlier than date from, try again</div>"
+        )
+    res = CryptoResult(payload=payload, db_pool=request.app.state.db)
     plot = await res.generate_plot()
 
-    return HTMLResponse(f"<div>{plot}</div>")
+    return HTMLResponse(plot)
 
+
+app.mount("/static/", StaticFiles(directory="./assets"), name="static")
 
 if __name__ == "__main__":
     uvicorn.run(app)
-
-
-# TODO: Wczytanie danych z API
-# TODO: Zapis do bazy (w razie potrzeby)
-# TODO: Obróbka danych na podstawie requesta
-# TODO: Zwrot danych (obrobionych) w formie html z wykresem(svg)
-# TODO: Powtórz
-# TODO: Dodaj docsy + testy

@@ -1,10 +1,12 @@
+import io
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 from decimal import Decimal
 
-from asyncpg import Pool
+import matplotlib.pyplot as plt
+from asyncpg import Pool, Record
 from input import FormInput
-from sql_queries import SELECT_CRYPTO_DATA
+from sql_queries import SELECT_CRYPTO_DATA_QUERY
 
 
 @dataclass(frozen=True)
@@ -49,8 +51,44 @@ class CryptoResult:
         self.__payload = payload
         self.__db_pool = db_pool
 
-    async def __retrieve_from_db(self, query: tuple[str, list[str]]):
-        return await self.__db_pool.fetch(*query)
+    async def __retrieve_from_db(self):
+        return await self.__db_pool.fetch(
+            SELECT_CRYPTO_DATA_QUERY,
+            self.__payload.cryptocurrency,
+            self.__payload.currency,
+            self.__payload.date_from,
+            self.__payload.date_until
+            + timedelta(hours=24),  # to get the end of the day
+        )
 
     async def generate_plot(self):
-        return await self.__retrieve_from_db(SELECT_CRYPTO_DATA)
+        db_data = await self.__retrieve_from_db()
+        crypto_rows = self.__db_res_to_crypto_rows(db_data)
+
+        fig, ax = plt.subplots()
+
+        x_axis = [row.last_updated for row in crypto_rows]
+        y_axis = [row.price for row in crypto_rows]
+        ax.plot(x_axis, y_axis)
+
+        ax.set_title(self.__payload.cryptocurrency)
+        ax.set_xlabel("Date and time")
+        ax.set_ylabel(
+            f"Cost of 1 {self.__payload.cryptocurrency} in {self.__payload.currency}"
+        )
+        ax.yaxis.tick_right()
+        ax.tick_params(axis="x", rotation=90)
+        fig.set_tight_layout(True)
+
+        buffer = io.BytesIO()
+        fig.savefig(buffer, format="svg")
+
+        buffer.seek(0)
+        svg = buffer.getvalue().decode("utf-8")
+        buffer.close()
+
+        return svg
+
+    @staticmethod
+    def __db_res_to_crypto_rows(records: list[Record]) -> list[CryptoPriceRow]:
+        return [CryptoPriceRow(**dict(record)) for record in records]

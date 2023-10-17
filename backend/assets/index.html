@@ -6,65 +6,69 @@
     <script src="https://unpkg.com/htmx.org@1.9.6"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link href="/static/output.css" rel="stylesheet">
 
 </head>
 <body>
-    <div class="md:flex md:items-center md:justify-between">
-      <div class="min-w-0 flex-1">
-        <h2 class="text-2xl font-bold leading-7 bg-black text-white sm:truncate sm:text-3xl sm:tracking-tight">CRYPT STAT</h2>
-      </div>
+    <div class="flex items-center justify-center m-20">
+<!--        <div class="md:flex md:items-center md:justify-between">-->
+<!--          <div class="min-w-0 flex-1">-->
+<!--            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">CRYPT-STAT</h2>-->
+<!--          </div>-->
+<!--          <div class="mt-4 flex md:ml-4 md:mt-0">-->
+<!--            <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Edit</button>-->
+<!--            <button type="button" class="ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Publish</button>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <form hx-post="/get-plot/" hx-ext="json-enc" hx-swap="innerHTML" hx-target="#plot">
+            <label for="cryptocurrencies" class="block text-sm font-medium leading-6 text-gray-900">Cryptocurrencies</label>
+            <select id="cryptocurrencies" name="cryptocurrency" required class="my-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option value="BTC">BTC</option>
+                <option value="ETH">ETH</option>
+                <option value="USDT">USDT</option>
+                <option value="BNB">BNB</option>
+                <option value="XRP">XRP</option>
+                <option value="USDC">USDC</option>
+                <option value="SOL">SOL</option>
+                <option value="ADA">ADA</option>
+                <option value="DOGE">DOGE</option>
+                <option value="TRX">TRX</option>
+            </select>
+
+            <label for="currencies" class="block text-sm font-medium leading-6 text-gray-900">Currencies</label>
+            <select id="currencies" name="currency" required class="my-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option value="USD">United States Dollar</option>
+                <option value="AUD">Australian Dollar</option>
+                <option value="CAD">Canadian Dollar</option>
+                <option value="CHF">Swiss Franc</option>
+                <option value="CNY">Chinese Yuan</option>
+                <option value="EUR">Euro</option>
+                <option value="GBP">Pound Sterling</option>
+                <option value="JPY">Japanese Yen</option>
+                <option value="PLN">Polish Złoty</option>
+                <option value="RUB">Russian Ruble</option>
+                <option value="AED">United Arab Emirates Dirham</option>
+            </select>
+
+            <label for="date_from">Date from</label>
+            <input id="date_from" type="date" name="date_from" required/>
+            <label for="date_until">Date until</label>
+            <input id="date_until" type="date" name="date_until" required/>
+
+            <label for="data_type" class="block text-sm font-medium leading-6 text-gray-900">Type of data in chart</label>
+            <select id="data_type" name="data_type" required class="my-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <option>MARKET CAP</option>
+                    <option>VOLUME</option>
+                    <option>PERCENT CHANGE</option>
+                    <option>PRICE</option>
+            </select>
+            <button type="submit" class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100">Check data</button>
+        </form>
+
+        <div id="plot"></div>
+
     </div>
-
-    <form hx-post="/" hx-ext="json-enc" hx-swap="outerHTML" hx-target="#plot">
-        <label for="cryptocurrencies">
-            Cryptocurrencies
-        </label>
-        <select id="cryptocurrencies" name="cryptocurrencies" multiple>
-            <option value="BTC">BTC</option>
-            <option value="ETH">ETH</option>
-            <option value="USDT">USDT</option>
-            <option value="BNB">BNB</option>
-            <option value="XRP">XRP</option>
-            <option value="USDC">USDC</option>
-            <option value="SOL">SOL</option>
-            <option value="ADA">ADA</option>
-            <option value="DOGE">DOGE</option>
-            <option value="TRX">TRX</option>
-        </select>
-
-        <label for="currencies">
-            Currencies
-        </label>
-        <select id="currencies" name="output_currencies" multiple>
-            <option value="USD">United States Dollar</option>
-            <option value="AUD">Australian Dollar</option>
-            <option value="CAD">Canadian Dollar</option>
-            <option value="CHF">Swiss Franc</option>
-            <option value="CNY">Chinese Yuan</option>
-            <option value="EUR">Euro</option>
-            <option value="GBP">Pound Sterling</option>
-            <option value="JPY">Japanese Yen</option>
-            <option value="PLN">Polish Złoty</option>
-            <option value="RUB">Russian Ruble</option>
-            <option value="AED">United Arab Emirates Dirham</option>
-        </select>
-
-        <label for="date_from">Date from</label>
-        <input id="date_from" type="date" name="date_from"/>
-        <label for="date_until">Date until</label>
-        <input id="date_until" type="date" name="date_until"/>
-
-        <label for="data_type">Type of data in chart</label>
-        <select id="data_type" name="data_type">
-                <option>MARKET CAP</option>
-                <option>VOLUME</option>
-                <option>PERCENT CHANGE</option>
-                <option>PRICE</option>
-        </select>
-        <button type="submit">Check data</button>
-    </form>
-
-    <div id="plot"></div>
 
 </body>
 </html>
