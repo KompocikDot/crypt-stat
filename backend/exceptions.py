@@ -4,3 +4,7 @@ class MissingDBUrlException(BaseException):
 
 class DbConnectionException(BaseException):
     """Could not initialize connection to the db"""
+
+
+class InvalidDataChartType(BaseException):
+    """Could not find a data with given type"""

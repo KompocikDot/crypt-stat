@@ -11,16 +11,6 @@
 </head>
 <body>
     <div class="flex items-center justify-center m-20">
-<!--        <div class="md:flex md:items-center md:justify-between">-->
-<!--          <div class="min-w-0 flex-1">-->
-<!--            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">CRYPT-STAT</h2>-->
-<!--          </div>-->
-<!--          <div class="mt-4 flex md:ml-4 md:mt-0">-->
-<!--            <button type="button" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Edit</button>-->
-<!--            <button type="button" class="ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Publish</button>-->
-<!--          </div>-->
-<!--        </div>-->
-
         <form hx-post="/get-plot/" hx-ext="json-enc" hx-swap="innerHTML" hx-target="#plot">
             <label for="cryptocurrencies" class="block text-sm font-medium leading-6 text-gray-900">Cryptocurrencies</label>
             <select id="cryptocurrencies" name="cryptocurrency" required class="my-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -51,23 +41,23 @@
                 <option value="AED">United Arab Emirates Dirham</option>
             </select>
 
-            <label for="date_from">Date from</label>
-            <input id="date_from" type="date" name="date_from" required/>
-            <label for="date_until">Date until</label>
-            <input id="date_until" type="date" name="date_until" required/>
+            <div class="">
+                <label for="date_from" class="block text-sm text-gray-900">Date from</label>
+                <input id="date_from" type="date" name="date_from" class="my-2 w-full rounded-md border-0  ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" required/>
+                <label for="date_until" class="block text-sm text-gray-900">Date until</label>
+                <input id="date_until" type="date" name="date_until" class="my-2 w-full rounded-md border-0 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" required/>
+            </div>
 
             <label for="data_type" class="block text-sm font-medium leading-6 text-gray-900">Type of data in chart</label>
             <select id="data_type" name="data_type" required class="my-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    <option>MARKET CAP</option>
-                    <option>VOLUME</option>
-                    <option>PERCENT CHANGE</option>
-                    <option>PRICE</option>
+                    <option value="market_cap">MARKET CAP</option>
+                    <option value="market_cap_dominance">MARKET CAP DOMINANCE</option>
+                    <option value="price">PRICE</option>
             </select>
             <button type="submit" class="rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100">Check data</button>
         </form>
 
-        <div id="plot"></div>
-
+        <div id="plot" class="ml-2"></div>
     </div>
 
 </body>

@@ -13,16 +13,7 @@ CREATE TABLE cryptocurrencies(
 
 CREATE TABLE historical_data(
     id INT  GENERATED ALWAYS AS IDENTITY  PRIMARY KEY NOT NULL,
-
     price NUMERIC(30, 15),
-    volume_24h NUMERIC(30, 15),
-    volume_change_24h NUMERIC(30, 15),
-    percent_change_1h NUMERIC(30, 15),
-    percent_change_24h NUMERIC(30, 15),
-    percent_change_7d NUMERIC(30, 15),
-    percent_change_30d NUMERIC(30, 15),
-    percent_change_60d NUMERIC(30, 15),
-    percent_change_90d NUMERIC(30, 15),
     market_cap NUMERIC(30, 15),
     market_cap_dominance NUMERIC(30, 15),
     last_updated TIMESTAMP,

@@ -5,21 +5,15 @@ from decimal import Decimal
 
 import matplotlib.pyplot as plt
 from asyncpg import Pool, Record
+from exceptions import InvalidDataChartType
 from input import FormInput
+from matplotlib.dates import DateFormatter
 from sql_queries import SELECT_CRYPTO_DATA_QUERY
 
 
 @dataclass(frozen=True)
 class CryptoPriceRow:
     price: Decimal
-    volume_24h: Decimal
-    volume_change_24h: Decimal
-    percent_change_1h: Decimal
-    percent_change_24h: Decimal
-    percent_change_7d: Decimal
-    percent_change_30d: Decimal
-    percent_change_60d: Decimal
-    percent_change_90d: Decimal
     market_cap: Decimal
     market_cap_dominance: Decimal
     last_updated: datetime
@@ -30,14 +24,6 @@ class CryptoPriceRow:
     def to_db_iterable(self):
         return [
             self.price,
-            self.volume_24h,
-            self.volume_change_24h,
-            self.percent_change_1h,
-            self.percent_change_24h,
-            self.percent_change_7d,
-            self.percent_change_30d,
-            self.percent_change_60d,
-            self.percent_change_90d,
             self.market_cap,
             self.market_cap_dominance,
             self.last_updated,
@@ -68,17 +54,37 @@ class CryptoResult:
         fig, ax = plt.subplots()
 
         x_axis = [row.last_updated for row in crypto_rows]
-        y_axis = [row.price for row in crypto_rows]
-        ax.plot(x_axis, y_axis)
+        y_axis = [getattr(row, self.__payload.data_type) for row in crypto_rows]
+        ax.plot(x_axis, y_axis, color="#4e46e5")
 
-        ax.set_title(self.__payload.cryptocurrency)
-        ax.set_xlabel("Date and time")
-        ax.set_ylabel(
-            f"Cost of 1 {self.__payload.cryptocurrency} in {self.__payload.currency}"
-        )
+        # Plot styling
+        fig.set_tight_layout(True)
         ax.yaxis.tick_right()
         ax.tick_params(axis="x", rotation=90)
-        fig.set_tight_layout(True)
+        ax.grid(True, color="#d1d5db")
+
+        match self.__payload.data_type:
+            case "market_cap":
+                title = f"{self.__payload.cryptocurrency} market cap"
+                y_label = f"Market cap of {self.__payload.cryptocurrency}"
+            case "price":
+                title = f"{self.__payload.cryptocurrency} prices"
+                y_label = (
+                    f"Cost of 1 {self.__payload.cryptocurrency} "
+                    f"in {self.__payload.currency}"
+                )
+            case "market_cap_dominance":
+                title = f"{self.__payload.cryptocurrency} market cap dominance"
+                y_label = f"Percentage of {self.__payload.cryptocurrency} on market"
+            case _:
+                raise InvalidDataChartType
+
+        ax.set_title(title)
+        ax.set_xlabel("Date and time")
+        ax.set_ylabel(y_label)
+
+        date_formatter = DateFormatter("%d.%m %H:%M")
+        ax.xaxis.set_major_formatter(date_formatter)
 
         buffer = io.BytesIO()
         fig.savefig(buffer, format="svg")

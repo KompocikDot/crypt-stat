@@ -36,7 +36,8 @@ async def read_index():
 async def get_plot(payload: FormInput, request: Request):
     if payload.date_until < payload.date_from:
         return HTMLResponse(
-            "<div>date until cannot be earlier than date from, try again</div>"
+            '<div class="ml-2">"date until" value cannot be '
+            'earlier than "date from" value, try again</div>'
         )
     res = CryptoResult(payload=payload, db_pool=request.app.state.db)
     plot = await res.generate_plot()

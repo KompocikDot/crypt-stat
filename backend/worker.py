@@ -4,7 +4,12 @@ from datetime import datetime
 from asyncpg import Pool
 from crypto import CryptoPriceRow
 from httpx import AsyncClient
-from sql_queries import HISTORICAL_DATA_EXISTS_QUERY, INSERT_HISTORICAL_DATA_QUERY
+from sql_queries import (
+    HISTORICAL_DATA_EXISTS_QUERY,
+    INSERT_HISTORICAL_DATA_QUERY,
+    SELECT_CRYPTOCURRENCIES_QUERY,
+    SELECT_CURRENCIES_QUERY,
+)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -41,17 +46,20 @@ class Worker:
                     not_in_db.append(obj.to_db_iterable())
 
             if not_in_db:
-                await self.__insert_to_db(not_in_db)
-                logging.info(f"Successfully inserted {len(not_in_db)} new items")
+                try:
+                    await self.__insert_to_db(not_in_db)
+                    logging.info(f"Successfully inserted {len(not_in_db)} new items")
+                except Exception as e:
+                    logging.error(e)
             else:
                 logging.info("No new items")
 
     async def __read_cryptocurrencies_from_db(self) -> dict[str, int]:
-        res = await self.__db_pool.fetch("SELECT symbol, id FROM cryptocurrencies")
+        res = await self.__db_pool.fetch(SELECT_CRYPTOCURRENCIES_QUERY)
         return {record["symbol"]: record["id"] for record in res}
 
     async def __read_currencies_from_db(self) -> dict[str, int]:
-        res = await self.__db_pool.fetch("SELECT symbol, id FROM currencies")
+        res = await self.__db_pool.fetch(SELECT_CURRENCIES_QUERY)
         return {record["symbol"]: record["id"] for record in res}
 
     def __convert_data_to_objects(self, data: dict) -> list[CryptoPriceRow]:
@@ -61,19 +69,21 @@ class Worker:
             cryptocurrency_id = self.crypto_codes[crypto_name]
 
             for currency_name, currency_quote in crypto_data[0]["quote"].items():
-                quote: dict = currency_quote
-                quote.pop("tvl")
-                quote.pop("fully_diluted_market_cap")
-                quote["last_updated"] = datetime.strptime(
-                    quote["last_updated"], "%Y-%m-%dT%H:%M:%S.%fZ"
+                last_updated = datetime.strptime(
+                    currency_quote["last_updated"], "%Y-%m-%dT%H:%M:%S.%fZ"
                 )
+                quote = {
+                    "price": currency_quote["price"],
+                    "market_cap": currency_quote["market_cap"],
+                    "market_cap_dominance": currency_quote["market_cap_dominance"],
+                    "last_updated": last_updated,
+                }
 
                 obj = CryptoPriceRow(
                     **quote,
                     cryptocurrency_id=cryptocurrency_id,
                     currency_id=self.currencies_codes[currency_name],
                 )
-
                 results.append(obj)
 
         return results
