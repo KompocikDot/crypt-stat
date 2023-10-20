@@ -8,8 +8,6 @@ SELECT_CRYPTO_DATA_QUERY = (
     "ORDER BY last_updated"
 )
 
-SELECT_CURRENCIES_CODES_QUERY = "SELECT name FROM currencies WHERE short_name in $1"
-
 HISTORICAL_DATA_EXISTS_QUERY = (
     "SELECT 1 FROM historical_data WHERE currency_id = $1 "
     "AND cryptocurrency_id = $2 AND last_updated = $3"

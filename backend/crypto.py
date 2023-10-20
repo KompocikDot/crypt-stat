@@ -54,6 +54,9 @@ class CryptoResult:
         fig, ax = plt.subplots()
 
         x_axis = [row.last_updated for row in crypto_rows]
+        if crypto_rows and not hasattr(crypto_rows[0], self.__payload.data_type):
+            raise InvalidDataChartType
+
         y_axis = [getattr(row, self.__payload.data_type) for row in crypto_rows]
         ax.plot(x_axis, y_axis, color="#4e46e5")
 
@@ -77,7 +80,7 @@ class CryptoResult:
                 title = f"{self.__payload.cryptocurrency} market cap dominance"
                 y_label = f"Percentage of {self.__payload.cryptocurrency} on market"
             case _:
-                raise InvalidDataChartType
+                raise NotImplementedError
 
         ax.set_title(title)
         ax.set_xlabel("Date and time")
