@@ -16,6 +16,11 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if args.cli:
+        if args.dates[0] > args.dates[1]:
+            raise Exception(
+                '"date until" value cannot be earlier than "date from" value'
+            )
+
         payload = FormInput(
             currency=args.currencies[0],
             cryptocurrency=args.currencies[1],
