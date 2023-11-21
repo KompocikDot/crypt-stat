@@ -37,7 +37,7 @@ class CryptoResult:
         self.__payload = payload
         self.__db_pool = db_pool
 
-    async def __retrieve_from_db(self):
+    async def __retrieve_from_db(self) -> list[Record]:
         return await self.__db_pool.fetch(
             SELECT_CRYPTO_DATA_QUERY,
             self.__payload.cryptocurrency,
@@ -47,7 +47,7 @@ class CryptoResult:
             + timedelta(hours=24),  # to get the end of the day
         )
 
-    async def generate_plot(self):
+    async def generate_plot(self, cli: bool = True) -> str | None:
         db_data = await self.__retrieve_from_db()
         crypto_rows = self.__db_res_to_crypto_rows(db_data)
 
@@ -89,14 +89,17 @@ class CryptoResult:
         date_formatter = DateFormatter("%d.%m %H:%M")
         ax.xaxis.set_major_formatter(date_formatter)
 
-        buffer = io.BytesIO()
-        fig.savefig(buffer, format="svg")
+        if not cli:
+            buffer = io.BytesIO()
+            fig.savefig(buffer, format="svg")
 
-        buffer.seek(0)
-        svg = buffer.getvalue().decode("utf-8")
-        buffer.close()
+            buffer.seek(0)
+            svg = buffer.getvalue().decode("utf-8")
+            buffer.close()
 
-        return svg
+            return svg
+
+        return plt.show()
 
     @staticmethod
     def __db_res_to_crypto_rows(records: list[Record]) -> list[CryptoPriceRow]:

@@ -72,15 +72,12 @@ class Worker:
                 last_updated = datetime.strptime(
                     currency_quote["last_updated"], "%Y-%m-%dT%H:%M:%S.%fZ"
                 )
-                quote = {
-                    "price": currency_quote["price"],
-                    "market_cap": currency_quote["market_cap"],
-                    "market_cap_dominance": currency_quote["market_cap_dominance"],
-                    "last_updated": last_updated,
-                }
 
                 obj = CryptoPriceRow(
-                    **quote,
+                    price=currency_quote["price"],
+                    market_cap=currency_quote["market_cap"],
+                    market_cap_dominance=currency_quote["market_cap_dominance"],
+                    last_updated=last_updated,
                     cryptocurrency_id=cryptocurrency_id,
                     currency_id=self.currencies_codes[currency_name],
                 )
