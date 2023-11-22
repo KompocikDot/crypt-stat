@@ -5,4 +5,5 @@ venv/
 .mypy_cache/
 .DS_Store
 backend/debug.log
+debug.log
 node_modules/
